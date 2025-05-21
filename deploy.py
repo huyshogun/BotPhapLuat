@@ -179,7 +179,7 @@ if bg_url:
     )
 
 # Tiêu đề
-st.markdown("<div class='chat-wrapper'><h1>🤖 Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông</h1></div>", unsafe_allow_html=True)
+st.markdown("<div class='chat-wrapper'><h1>🤖 Chatbot hỏi đáp Luật Giao thông</h1></div>", unsafe_allow_html=True)
 
 # Khởi tạo lịch sử trò chuyện nếu chưa có
 if "messages" not in st.session_state:
