@@ -79,19 +79,6 @@ def relevant_passage(input):
       for i in range(len(law_dict[passage])):
        relevant +=" "+ "Khoản" + " " + str(law_dict[passage][i])
    return relevant
-def make_first_prompt(query, relevant_passage):
-  escaped = relevant_passage.replace("'", "").replace('"', "").replace("\n", " ")
-  prompt = textwrap.dedent("""Bạn là một bot hữu ích và giàu thông tin, trả lời các câu hỏi bằng cách sử dụng văn bản từ đoạn văn tham khảo bên dưới.\
-  Đảm bảo trả lời bằng một câu hoàn chỉnh, toàn diện, bao gồm tất cả thông tin cơ bản có liên quan.\
-  Nêu rõ đoạn văn là điều số mấy thuộc Luật Hôn nhân và Gia đình 2014 đã được ghi rõ đoạn văn, nếu có nhiều khoản thì bạn hãy nêu rõ khoản số mấy được bạn sử dụng để tham khảo.\
-  Tuy nhiên, bạn đang nói chuyện với người dùng không biết nhiều về pháp luật, vì vậy hãy nhớ chia nhỏ các khái niệm phức tạp và\
-  tạo ra một giọng điệu thân thiện và mang tính đối thoại.\
-  Nếu đoạn văn không liên quan đến câu trả lời,hãy trả lời bằng những kiến thức bạn có.
-  QUESTION: '{query}'
-  PASSAGE: '{relevant_passage}'
-
-    ANSWER:
-  """).format(query=query, relevant_passage=escaped)
 def make_first_prompt_gt(query, relevant_passage):
   escaped = relevant_passage.replace("'", "").replace('"', "").replace("\n", " ")
   prompt = textwrap.dedent("""Bạn là một bot hữu ích và giàu thông tin, trả lời các câu hỏi bằng cách sử dụng văn bản pháp luật từ đoạn văn tham khảo bên dưới.\
