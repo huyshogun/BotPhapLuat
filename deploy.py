@@ -150,22 +150,3 @@ if prompt := st.chat_input("Nhập câu hỏi của bạn về luật giao thôn
     audio_file = open('clap.mp3', 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/mp3')
-
-# st.title("Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông")
-
-''' def run():
-    # Hộp nhập liệu cho câu hỏi của người dùng
-    user_question = st.text_input("Nhập câu hỏi vào đây:")
-    if st.button("Gửi"):
-        # Lấy phản hồi từ chatbot dựa trên câu hỏi và ngữ cảnh hiện tại
-        response_text = get_response_from_chatbot_gt(user_question)
-        # Cập nhật lịch sử hội thoại: lưu câu hỏi và phản hồi
-        st.session_state.chat_history.append(f"Bạn: {user_question}")
-        st.session_state.chat_history.append(f"Chatbot: {response_text}")
-        # Hiển thị toàn bộ lịch sử hội thoại
-        st.write("### Lịch sử hội thoại:")
-        for entry in st.session_state.chat_history:
-            st.write(entry)
-
-run()
-''' 
