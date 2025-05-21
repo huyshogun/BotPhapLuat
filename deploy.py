@@ -3,6 +3,7 @@ import pickle
 import google.generativeai as genai
 import os
 import pdfplumber
+import re
 from function import make_first_prompt_gt1
 api_key = "AIzaSyB8AbaE7GCBAmsnBWCl5GwH4cCrnzEdsZY"
 model="models/text-embedding-004"
