@@ -12,22 +12,22 @@ with open('knowledge_graph_13_5_25.pkl', 'rb') as f:
     G = pickle.load(f)
 case = ""
 neighbors_0 = list(G.neighbors("Chương II"))
-neighbors_1 = []
-for i in neighbors_0:
-   nei = list(G.neighbors(i))
-   neighbors_1 = neighbors_1 + nei
-neighbors_2 = []
-for i in neighbors_1:
-   nei = list(G.neighbors(i))
-   neighbors_2 = neighbors_2 + nei
+#neighbors_1 = []
+#for i in neighbors_0[0:4]:
+#   nei = list(G.neighbors(i))
+#   neighbors_1 = neighbors_1 + nei
+#neighbors_2 = []
+#for i in neighbors_1:
+#   nei = list(G.neighbors(i))
+#   neighbors_2 = neighbors_2 + nei
 case_0 = ""
 for i in neighbors_0:
    for j in list(G.neighbors(i)):
-       case_0 = case_0 + "Điều " + j + ": " + G.nodes[j]['content'] + "\n"
+       case_0 = case_0 + "Điều " + j + ": " + G.nodes[j]['content'] + "\n"    
 def get_response_from_chatbot_gt(user_question):
    response = models.generate_content("Cho câu hỏi: " + user_question + " Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các điều nào trong Nghị định 168/2024/NĐ-CP liên quan đến phương tiện của người vi phạm trong câu hỏi mà tôi cung cấp dưới đây (nếu trong câu hỏi không cho biết phương tiện, hãy ghi số 0), lưu ý nếu câu hỏi chỉ ghi xe máy có nghĩa là xe máy chuyên dùng, chứ không phải xe mô tô: \n" + case_0)
    case_1 = ""
-   if "**0**" in response.text:
+   if "0" in response.text:
     print(1)
    else:
    # pattern = r"\*\*Điều\s+(\d+):\*\*"
@@ -37,6 +37,8 @@ def get_response_from_chatbot_gt(user_question):
         nei = G.neighbors(i)
         for j in nei:
            case_1 = case_1 + "Điểm " + j + ": " + G.nodes[j]['content'] + "\n"
+    for i in list(G.neighbors('12')):
+        case_1 = case_1 + "Điểm " + i + ": " + G.nodes[j]['content'] + "\n"
    response_1 = models.generate_content("Cho câu hỏi: " + user_question + " Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các khoản và điểm nào trong Nghị định 168/2024/NĐ-CP mà tôi cung cấp dưới đây liên quan hoặc giống lỗi mà người trong câu hỏi mắc phải mà tôi cung cấp dưới đây được không: \n" + case_1)
    # pattern = r"\b6\.[1-9]\d*(?:\.[a-zA-ZđĐ0-9]+)?\b"
    # pattern = r"Điểm\s+([0-9]+(?:\.(?:[0-9]+|[a-zđ]+))*)\s*"
