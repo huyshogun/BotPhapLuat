@@ -117,7 +117,7 @@ def get_response_from_chatbot_gt(user_question):
    prompt = make_first_prompt_gt1(user_question, relevant_passage)
    answer = models.generate_content(prompt)
    return answer.text
-'''st.set_page_config(page_title="Chatbot Luật Giao Thông", layout="wide")
+st.set_page_config(page_title="Chatbot Luật Giao Thông", layout="wide")
 st.title("🤖 Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông")
 
 # Hiển thị hình ảnh minh họa (nếu có)
@@ -150,10 +150,10 @@ if prompt := st.chat_input("Nhập câu hỏi của bạn về luật giao thôn
     audio_file = open('clap.mp3', 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/mp3')
-'''
-st.title("Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông")
 
-def run():
+# st.title("Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông")
+
+''' def run():
     # Hộp nhập liệu cho câu hỏi của người dùng
     user_question = st.text_input("Nhập câu hỏi vào đây:")
     if st.button("Gửi"):
@@ -168,3 +168,4 @@ def run():
             st.write(entry)
 
 run()
+''' 
