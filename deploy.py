@@ -25,7 +25,7 @@ for i in neighbors_0:
    for j in list(G.neighbors(i)):
        case_0 = case_0 + "Điều " + j + ": " + G.nodes[j]['content'] + "\n"    
 def get_response_from_chatbot_gt(user_question):
-   response = models.generate_content("Cho câu hỏi: " + user_question + " Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các điều nào trong Nghị định 168/2024/NĐ-CP liên quan đến phương tiện của người vi phạm trong câu hỏi mà tôi cung cấp dưới đây (nếu trong câu hỏi không cho biết phương tiện, hãy ghi số 0), lưu ý nếu câu hỏi chỉ ghi xe máy có nghĩa là xe máy chuyên dùng, chứ không phải xe mô tô: \n" + case_0)
+   response = models.generate_content("Cho câu hỏi: " + user_question + ". Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các điều nào trong Nghị định 168/2024/NĐ-CP liên quan đến phương tiện của người vi phạm trong câu hỏi mà tôi cung cấp dưới đây (nếu trong câu hỏi không cho biết cụ thể phương tiện (ví dụ chỉ nói đi xe mà không nói rõ là xe ô tô, xe máy hay xe đạp) thì hãy ghi số 0. ), lưu ý nếu câu hỏi chỉ ghi xe máy có nghĩa là xe máy chuyên dùng, chứ không phải xe mô tô: \n" + case_0)
    case_1 = ""
    if "0" in response.text:
     print(1)
