@@ -37,7 +37,7 @@ def get_response_from_chatbot_gt(user_question):
         nei = G.neighbors(i)
         for j in nei:
            case_1 = case_1 + "Điểm " + j + ": " + G.nodes[j]['content'] + "\n"
-    for i in list(G.neighbors('12')):
+     for i in list(G.neighbors('12')):
         case_1 = case_1 + "Điểm " + i + ": " + G.nodes[j]['content'] + "\n"
    response_1 = models.generate_content("Cho câu hỏi: " + user_question + " Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các khoản và điểm nào trong Nghị định 168/2024/NĐ-CP mà tôi cung cấp dưới đây liên quan hoặc giống lỗi mà người trong câu hỏi mắc phải mà tôi cung cấp dưới đây được không: \n" + case_1)
    # pattern = r"\b6\.[1-9]\d*(?:\.[a-zA-ZđĐ0-9]+)?\b"
