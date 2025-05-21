@@ -115,8 +115,9 @@ def get_response_from_chatbot_gt(user_question):
             else: relevant_passage = relevant_passage + "\n"
       relevant_passage = relevant_passage + "\n"
    prompt = make_first_prompt_gt1(user_question, relevant_passage)
-   answer = models.generate_content(prompt)
-   return answer.text
+   # answer = models.generate_content(prompt)
+   # return answer.text 
+   return relevant_passage
 st.set_page_config(page_title="Chatbot Luật Giao Thông", layout="wide")
 st.title("🤖 Chatbot hỏi đáp Luật xử lý vi phạm An toàn giao thông")
 
