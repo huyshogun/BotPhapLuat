@@ -12,14 +12,6 @@ with open('knowledge_graph_13_5_25.pkl', 'rb') as f:
     G = pickle.load(f)
 case = ""
 neighbors_0 = list(G.neighbors("Chương II"))
-#neighbors_1 = []
-#for i in neighbors_0[0:4]:
-#   nei = list(G.neighbors(i))
-#   neighbors_1 = neighbors_1 + nei
-#neighbors_2 = []
-#for i in neighbors_1:
-#   nei = list(G.neighbors(i))
-#   neighbors_2 = neighbors_2 + nei
 case_0 = ""
 for i in neighbors_0:
    for j in list(G.neighbors(i)):
@@ -27,9 +19,6 @@ for i in neighbors_0:
 def get_response_from_chatbot_gt(user_question):
    response = models.generate_content("Cho câu hỏi: " + user_question + ". Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các điều nào trong Nghị định 168/2024/NĐ-CP liên quan đến phương tiện của người vi phạm trong câu hỏi mà tôi cung cấp dưới đây (nếu trong câu hỏi không cho biết cụ thể phương tiện (ví dụ chỉ nói đi xe mà không nói rõ là xe ô tô, xe máy hay xe đạp) thì hãy ghi số 0. ), lưu ý nếu câu hỏi chỉ ghi xe máy có nghĩa là xe máy chuyên dùng, chứ không phải xe mô tô: \n" + case_0)
    case_1 = ""
-    #print(1)
-   #else:
-   # pattern = r"\*\*Điều\s+(\d+):\*\*"
    pattern = r"Điều\s+(\d+)"
    matches = re.findall(pattern, response.text)
    for i in matches:
