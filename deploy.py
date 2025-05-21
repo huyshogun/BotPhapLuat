@@ -6,7 +6,6 @@ import pdfplumber
 import re
 from function import make_first_prompt_gt1
 api_key = "AIzaSyB8AbaE7GCBAmsnBWCl5GwH4cCrnzEdsZY"
-model="models/text-embedding-004"
 models = genai.GenerativeModel('gemini-2.0-flash')
 genai.configure(api_key=api_key)
 with open('knowledge_graph_13_5_25.pkl', 'rb') as f:
