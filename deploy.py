@@ -57,8 +57,8 @@ def process(matches, user_question):
    matches1 = []
    for i in matches_1:
     if i in G:
-    neig = list(G.neighbors(i))
-    if(len(neig) > 0):
+     neig = list(G.neighbors(i))
+     if(len(neig) > 0):
         uc = ""
         k = 0
         uc = uc + "Điểm " + i + ": " + G.nodes[i]['content'] + ".\n"
@@ -81,7 +81,7 @@ def process(matches, user_question):
                 matches1.append(m[0])
         else:
             matches1.append(i)
-    else:
+     else:
         matches1.append(i)
    matches1 = list(set(matches1))
    relevant_passage = ""
