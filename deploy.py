@@ -56,6 +56,7 @@ def process(matches, user_question):
    matches_1 = re.findall(pattern, response_1.text)
    matches1 = []
    for i in matches_1:
+    if i in G:
     neig = list(G.neighbors(i))
     if(len(neig) > 0):
         uc = ""
