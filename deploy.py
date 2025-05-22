@@ -6,7 +6,7 @@ import pdfplumber
 import re
 from function import make_first_prompt_gt1
 api_key = "AIzaSyAYLp5HQXOAqeWCTOD8cgZJVZqTJipKHLI"
-models = genai.GenerativeModel('gemini-2.0-flash')
+models = genai.GenerativeModel('gemini-1.5-flash')
 genai.configure(api_key=api_key)
 with open('knowledge_graph_13_5_25.pkl', 'rb') as f:
     G = pickle.load(f)
