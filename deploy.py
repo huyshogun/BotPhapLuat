@@ -50,7 +50,7 @@ def process(matches, user_question):
       for j in nei:
           case_1 = case_1 + "Điểm " + j + ": " + G.nodes[j]['content'] + "\n"
    for i in list(G.neighbors('12')):
-        case_1 = case_1 + "Điểm " + i + ": " + G.nodes[j]['content'] + "\n"
+        case_1 = case_1 + "Điểm " + i + ": " + G.nodes[i]['content'] + "\n"
    response_1 = models.generate_content("Cho câu hỏi: " + user_question + " Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các khoản và điểm nào trong Nghị định 168/2024/NĐ-CP mà tôi cung cấp dưới đây liên quan hoặc giống lỗi mà người trong câu hỏi mắc phải mà tôi cung cấp dưới đây được không: \n" + case_1)
    pattern = r"\b[1-9]\d*\.[1-9]\d*(?:\.[a-zđ]+)?\b"
    matches_1 = re.findall(pattern, response_1.text)
