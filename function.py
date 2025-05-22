@@ -6,13 +6,7 @@ import google.generativeai as genai
 import os
 import pickle
 api_key = "AIzaSyB8AbaE7GCBAmsnBWCl5GwH4cCrnzEdsZY"
-model="models/text-embedding-004"
 genai.configure(api_key=api_key)
-with open('law_dict.pkl', 'rb') as f:
-    law_dict = pickle.load(f)
-with open('db.pkl', 'rb') as f:
-    db = pickle.load(f)
-columns = list(law_dict.keys())
 def find_best_passage(query, dataframe,n=2):
   query_embedding = genai.embed_content(model=model,
                                         content=query,
