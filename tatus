@@ -1,0 +1,260 @@
+[33mcommit 36aa183c2f9f3ea0956ac397014066a39d2a688c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 05e0dea 9a86e03
+Author: huyshogun <huy15a3k23@cvp.vn>
+Date:   Thu May 29 04:14:07 2025 +0700
+
+    Merge branch 'main' of https://github.com/huyshogun/BotPhapLuat
+
+[33mcommit 05e0deac217a8db32cefb640432e79ab0ac17975[m
+Author: huyshogun <huy15a3k23@cvp.vn>
+Date:   Thu May 29 04:08:21 2025 +0700
+
+    Initial commit
+
+[33mcommit 9a86e036ae8cdb729526aaf48944bfb6bf19a7cb[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:03:27 2025 +0700
+
+    Delete requirements.txt
+
+[33mcommit 68e151002cc519903fc61cafe1adb8ff374ed38b[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:03:17 2025 +0700
+
+    Delete deploy.py
+
+[33mcommit fb13800d073f993dd5439cc27b452db714a0333c[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:03:08 2025 +0700
+
+    Delete law_image.jpg
+
+[33mcommit d9b2af65cdb86f5ac9dd00e5986a106ab3459051[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:02:57 2025 +0700
+
+    Delete knowledge_graph_13_5_25.pkl
+
+[33mcommit 58046b7181d45758b3449c194618cb5fef9d3287[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:02:49 2025 +0700
+
+    Delete function.py
+
+[33mcommit 4c0cc98a86a6cfdf51b7c6af346223e365983979[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:02:40 2025 +0700
+
+    Delete clap.mp3
+
+[33mcommit 394c893333e588690cf0653b7a85834bfc722989[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:02:17 2025 +0700
+
+    Delete Nghi_dinh_168.pdf
+
+[33mcommit e3de11662670371188334c13d459fb14ca1712ec[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 04:02:07 2025 +0700
+
+    Delete .devcontainer directory
+
+[33mcommit f35fc82425a5b818a09dba50bc8358c44c228e0d[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 03:40:54 2025 +0700
+
+    Update requirements.txt
+
+[33mcommit 4671e3bca479084d4e96c0cc94489f162ec5605a[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 03:37:12 2025 +0700
+
+    Update deploy.py
+
+[33mcommit c6e006f89b264c42e0a41aa20e4fa0ad17832c56[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 03:36:00 2025 +0700
+
+    Update deploy.py
+
+[33mcommit e0845685bfd8156176ba9a2ca2a0166e24188843[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 03:27:45 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 2f3ebfd5e7fdb9d969bafaacc425a08fab082998[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 03:20:05 2025 +0700
+
+    Update function.py
+
+[33mcommit fad08932ce6994a69fbc3cec660e860fbceddecd[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 02:04:30 2025 +0700
+
+    Update requirements.txt
+
+[33mcommit cb5ab775710948164523e2f63625646bc3c63bb5[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 29 01:52:52 2025 +0700
+
+    Update requirements.txt
+
+[33mcommit 4e4df8a9dc6b7d629565c3695153b2105e914852[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 28 02:30:39 2025 +0700
+
+    Add files via upload
+
+[33mcommit ae41adc241602a0b93e9777b43e2313bb8dc2cf0[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 28 02:30:17 2025 +0700
+
+    Delete knowledge_graph_13_5_25.pkl
+
+[33mcommit 2431fcf58c70771c26012c52c1781e14b6e53636[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 28 01:37:45 2025 +0700
+
+    Add files via upload
+
+[33mcommit 32eff2dd624fddd7a0cb5658e1c626e9c7ea8e1f[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 28 01:35:30 2025 +0700
+
+    Delete knowledge_graph_13_5_25.pkl
+
+[33mcommit f88db6decd3a4fea7ce32a6de7be0fafa607d319[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 21:28:24 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 109342dcce7d763d1901ba52da9c655c8b094b3b[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 21:11:41 2025 +0700
+
+    Update deploy.py
+
+[33mcommit e2317c094df5245dc5209a5402bed9805642269d[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 21:05:03 2025 +0700
+
+    Add files via upload
+
+[33mcommit 324b9198edc13071dcf8ef0c2f10fc33145a2b0d[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 21:04:40 2025 +0700
+
+    Delete law_image.jpg
+
+[33mcommit 37826813e0171fcd312f50f128b8cb8e279f9bc8[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:29:09 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 2aea4432c5961ca3ec6eb9e890b53f03aa51fd29[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:24:27 2025 +0700
+
+    Update function.py
+
+[33mcommit 6a15dcc9a84c1ae69609b1be718178be2b9c488d[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:22:40 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 8ceccd4a4edc1fc9e1a0000593f87c6bb2548c14[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:20:43 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 417f1b8f455527d4ee43a3abbe380c9e946d36ed[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:17:01 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 66bf41fed7d486594b12b70240a62178ebde315c[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Thu May 22 13:05:56 2025 +0700
+
+    Update deploy.py
+
+[33mcommit b17676f2fd32596f619dd64e62ec93fd8919dc9c[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 20:41:13 2025 +0700
+
+    Delete db.pkl
+
+[33mcommit 3482e3a5fbce0a01dfe966c18e4aae4e5585a18a[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 20:40:59 2025 +0700
+
+    Delete law_dict.pkl
+
+[33mcommit 252ddb81cbc3f44dd879462f36868403728a830d[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 20:40:21 2025 +0700
+
+    Update function.py
+
+[33mcommit e90a6c6af8e410236696b8f670a75ab04b440cc9[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 20:36:21 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 3a7290f547ea27b0a5f9a2b16bc13ee13d55d814[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 18:48:57 2025 +0700
+
+    Add files via upload
+
+[33mcommit d19ff83110a95246fe2e798853c6ff18935a0fea[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 18:48:36 2025 +0700
+
+    Delete law_image.jpg
+
+[33mcommit 4704bc4335e2ddc14c924a103d7ce87d379451bc[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 18:45:56 2025 +0700
+
+    Added Dev Container Folder
+
+[33mcommit a8b1761ba7241fd7871069018daf7f8cc78f51a4[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 18:43:18 2025 +0700
+
+    Add files via upload
+
+[33mcommit 2a6483b42090d66223f5631ade4ff50fa24b2d60[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 18:42:42 2025 +0700
+
+    Delete deploy.py
+
+[33mcommit c1b3bfa93100e79d7cfb4b56897b840acce8917c[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 17:40:06 2025 +0700
+
+    Update deploy.py
+
+[33mcommit 7895e2f6d43d9c68880bbde0c42def34265c7417[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 17:26:23 2025 +0700
+
+    Add files via upload
+
+[33mcommit a04386ade5a7c3667dd70323cd9f6125ebe62fb1[m
+Author: huyshogun <138808296+huyshogun@users.noreply.github.com>
+Date:   Wed May 21 17:25:56 2025 +0700
+
+    Delete knowledge_graph_13_5_25.pkl
+
+[33mcommit fd80db4cd9259de1d5bf865137a0f8aa8fa7943d

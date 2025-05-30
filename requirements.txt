@@ -1,0 +1,9 @@
+numpy
+pandas
+pdfplumber
+streamlit
+google-generativeai
+networkx
+openai
+python-docx
+python-dotenv
