@@ -90,7 +90,7 @@ def make_first_prompt_gt_tt(query, relevant_passage, law_name):
   PASSAGE: '{relevant_passage}'
 
     ANSWER:
-  """).format(query=query, relevant_passage=escaped)
+  """).format(query=query, relevant_passage=escaped, law_name=law_name)
   return prompt
 def make_first_prompt_gt1(query, relevant_passage):
     """
