@@ -116,8 +116,8 @@ def get_response_from_chatbot_gt(user_question):
      result = list(map(int, numbers))
      result = set(result)
      excluded_articles = ["tt.1","tt.2","tt.9","tt.10"]
-     Diem = Diem(result, excluded_articles, 'Luật Trật tự', 'tt')
-     prompt = get_prompt(Diem, user_question)
+     Diem = Diem_m(result, excluded_articles, 'Luật Trật tự', 'tt')
+     prompt = get_prompt(Diem, user_question, 'Luật Trật tự, an toàn giao thông đường bộ năm 2024')
      answer = extract_article(client, prompt)
      return answer
  
@@ -134,8 +134,8 @@ def get_response_from_chatbot_gt(user_question):
      result = list(map(int, numbers))
      result = set(result)
      excluded_articles = ["ds.1","ds.2","ds.3","ds.4", "ds.9"]
-     Diem = Diem(result, excluded_articles, 'Luật Đường sắt', 'ds')
-     prompt = get_prompt(Diem, user_question)
+     Diem = Diem_m(result, excluded_articles, 'Luật Đường sắt', 'ds')
+     prompt = get_prompt(Diem, user_question, 'Luật Đường  sắt năm 2017')
      answer = extract_article(client, prompt)
      return answer
  
@@ -152,8 +152,8 @@ def get_response_from_chatbot_gt(user_question):
      result = list(map(int, numbers))
      result = set(result)
      excluded_articles = ["hk.1","hk.2","hk.3","hk.5","hk.12"]
-     Diem = Diem(result, excluded_articles, 'Luật Hàng không', 'hk')
-     prompt = get_prompt(Diem, user_question)
+     Diem = Diem_m(result, excluded_articles, 'Luật Hàng không', 'hk')
+     prompt = get_prompt(Diem, user_question, 'Luật Hàng không Dân dụng Việt Nam năm 2025')
      answer = extract_article(client, prompt)
      return answer
  
@@ -172,15 +172,18 @@ def get_response_from_chatbot_gt(user_question):
      result = list(map(int, numbers))
      result = set(result)
      excluded_articles = ["hh.1","hh.2","hh.4","hh.6","hh.12"]
-     Diem = Diem(result, excluded_articles, 'Luật Hàng hải', 'hh')
-     prompt = get_prompt(Diem, user_question)
+     Diem = Diem_m(result, excluded_articles, 'Luật Hàng hải', 'hh')
+     prompt = get_prompt(Diem, user_question, "Bộ Luật Hàng hải Việt Nam năm 2015")
      answer = extract_article(client, prompt)
      return answer
-def Diem(result,ten_luat,excluded_articles, so_hieu):
+def Diem_m(result, excluded_articles, ten_luat, so_hieu):
      Diem = ""
 # Changed variable name from 'except' to 'excluded_articles'
      for i in excluded_articles:
-        Diem += "Điều " + i[3] + ": "+ G.nodes[i]['content'] + ".\n"
+        if len(i) == 4:
+           Diem += "Điều " + i[3] + ": "+ G.nodes[i]['content'] + ".\n"
+        else:
+           Diem += "Điều " + i[3:] + ": "+ G.nodes[i]['content'] + ".\n"
         for j in list(G.neighbors(i)):
            Diem += "Khoản " + j[3:] + ": " + G.nodes[j]['content'] + ".\n"
            if list(G.neighbors(j)):
@@ -207,13 +210,13 @@ def Diem(result,ten_luat,excluded_articles, so_hieu):
                       Diem += "Điểm " + k[3:] + ": " + G.nodes[k]['content'] + ".\n"
      return Diem
 
-def get_prompt(Diem, user_question):
+def get_prompt(Diem, user_question,  law_name):
      eva =  evaluator_extract_text(Diem, user_question)
      if 'Đã đủ' in eva:
-        prompt = make_first_prompt_gt_tt(user_question, Diem)
+        prompt = make_first_prompt_gt_tt(user_question, Diem, law_name)
      else:
         bonus = extract_database(eva,user_question)
-        prompt = make_first_prompt_gt_tt(user_question, Diem + "\nBạn được bổ sung văn bản pháp luật sau (Lưu ý vẫn cần nêu rõ tên của bộ luật (Ví dụ Thông tư 38/2024/TT-BGTVT) và nêu cụ thể điều, khoản, điểm bạn tham khảo)" + bonus)
+        prompt = make_first_prompt_gt_tt(user_question, Diem + "\nBạn được bổ sung văn bản pháp luật sau (Lưu ý vẫn cần nêu rõ tên của bộ luật (Ví dụ Thông tư 38/2024/TT-BGTVT) và nêu cụ thể điều, khoản, điểm bạn tham khảo)" + bonus, law_name)
      return prompt
 def evaluator_extract_text(relevant_passage, user_question):
     prompt = "Cho câu hỏi " + user_question + " và văn bản đã truy xuất được sau đây:\n" + relevant_passage + "\n Bạn hãy đánh giá sau các nội dung trong văn bản truy xuất đã đủ để trả lời câu hỏi chưa. \
