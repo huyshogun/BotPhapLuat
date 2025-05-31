@@ -5,14 +5,16 @@ import os
 import pdfplumber
 import re
 import openai
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from function import make_first_prompt_gt1, make_first_prompt_gt_tt
-load_dotenv()  # Tải các biến môi trường từ tệp .env
-api_key = os.getenv("api_key_google")
+# load_dotenv()  # Tải các biến môi trường từ tệp .env
+# api_key = os.getenv("api_key_google")
+api_key = st.secrets["api_key_google"]
 models = genai.GenerativeModel('gemini-2.0-flash')
 genai.configure(api_key=api_key)
 # 1. Cấu hình OpenRouter với API key trực tiếp
-API_KEY = os.getenv("API_KEY_OPENROUTER")
+# API_KEY = os.getenv("API_KEY_OPENROUTER")
+API_KEY = st.secrets["API_KEY_OPENROUTER"]
 # Instantiate the client using the new syntax
 client = openai.OpenAI(
     api_key=API_KEY,
@@ -73,7 +75,7 @@ for i in neighbors_0:
    for j in list(G.neighbors(i)):
        case_0 = case_0 + "Điều " + j + ": " + G.nodes[j]['content'] + "\n"    
 def get_response_from_chatbot_gt(user_question):
- ans = question_identification(client, "Cho câu hỏi sau:" + user_question +"Hãy phân loại vào 5 dạng câu hỏi: 1, Câu hỏi về mức phạt.\n2,câu hỏi về quy tắc tham gia giao thông đường bộ.\n3,Câu hỏi về đường sắt.\n4,Câu hỏi về đường hàng không.\n5,Câu hỏi về đường thủy.\n Nếu là dạng 1 trả về 'Dạng 1', dạng 2 trả về 'Dạng 2', tương tự là 'Dạng 3','Dạng 4','Dạng 5'")
+ ans = question_identification(client, "Cho câu hỏi sau:" + user_question +"Hãy phân loại vào 5 dạng câu hỏi: 1, Câu hỏi về mức phạt.\n2,câu hỏi về quy tắc tham gia giao thông đường bộ.\n3,Câu hỏi về đường sắt.\n4,Câu hỏi về đường hàng không.\n5,Câu hỏi về đường hàng hải.\n Nếu là dạng 1 trả về 'Dạng 1', dạng 2 trả về 'Dạng 2', tương tự là 'Dạng 3','Dạng 4','Dạng 5'")
  if 'Dạng 1' in ans:  
    response = models.generate_content("Cho câu hỏi: " + user_question + ". Bạn hãy cho tôi biết và liệt kê số hiệu và tên của của các điều nào trong Nghị định 168/2024/NĐ-CP liên quan đến phương tiện của người vi phạm trong câu hỏi mà tôi cung cấp dưới đây (nếu trong câu hỏi không cho biết cụ thể phương tiện (ví dụ chỉ nói đi xe mà không nói rõ là xe ô tô, xe máy hay xe đạp) thì hãy ghi 'không rõ'.), lưu ý nếu câu hỏi chỉ ghi xe máy có nghĩa là xe máy chuyên dùng, chứ không phải xe mô tô: \n" + case_0)
    pattern = r"Điều\s+(\d+)"
@@ -102,7 +104,6 @@ def get_response_from_chatbot_gt(user_question):
       answer = process(matches, user_question)
       return answer
  if 'Dạng 2' in ans:
-     #  Nội dung điều 1,2,9,10 mặc định được thêm vào
      Dieu = ""
      for i in list(G.neighbors('Luật Trật tự'))[2:]:
         if i == "tt.9" or i ==  'tt.10':
@@ -114,9 +115,70 @@ def get_response_from_chatbot_gt(user_question):
      numbers = re.findall(r"Điều\s+(\d+)", ex)
      result = list(map(int, numbers))
      result = set(result)
+     excluded_articles = ["tt.1","tt.2","tt.9","tt.10"]
+     Diem = Diem(result, excluded_articles, 'Luật Trật tự', 'tt')
+     prompt = get_prompt(Diem, user_question)
+     answer = extract_article(client, prompt)
+     return answer
+ 
+ if 'Dạng 3' in ans:
+     Dieu = ""
+     for i in list(G.neighbors('Luật Đường sắt'))[3:]:
+        if i == "ds.9":
+           continue
+        Dieu  +=   "Điều " + i[3:] + ": " + G.nodes[i]['content'] + "\n"
+     pr = "Cho các điều sau trong Luật sau: " +  Dieu + ".Trích xuất các điều mà bạn thấy nội dung của nó phù hợp vầ liên quan đến câu hỏi nhất: " + user_question + ".Hãy trả lại số hiệu của điều. Ví dụ nếu bạn thấy điều 12 phù hợp trả lại 'Điều 12', điều 3 là 'Điều 3',\
+      tương tự như vậy với các điều khác. Nếu không tìm thấy điều nào phù hợp, trả về rỗng"
+     ex = extract_article(client, pr)
+     numbers = re.findall(r"Điều\s+(\d+)", ex)
+     result = list(map(int, numbers))
+     result = set(result)
+     excluded_articles = ["ds.1","ds.2","ds.3","ds.4", "ds.9"]
+     Diem = Diem(result, excluded_articles, 'Luật Đường sắt', 'ds')
+     prompt = get_prompt(Diem, user_question)
+     answer = extract_article(client, prompt)
+     return answer
+ 
+ if 'Dạng 4' in ans:
+     Dieu = ""
+     for i in list(G.neighbors('Luật Hàng không'))[3:]:
+        if i == "hk.5" or i ==  'tt.12':
+           continue
+        Dieu  +=   "Điều " + i[3:] + ": " + G.nodes[i]['content'] + "\n"
+     pr = "Cho các điều sau trong Luật sau: " +  Dieu + ".Trích xuất các điều mà bạn thấy nội dung của nó phù hợp vầ liên quan đến câu hỏi nhất: " + user_question + ".Hãy trả lại số hiệu của điều. Ví dụ nếu bạn thấy điều 12 phù hợp trả lại 'Điều 12', điều 3 là 'Điều 3',\
+      tương tự như vậy với các điều khác. Nếu không tìm thấy điều nào phù hợp, trả về rỗng"
+     ex = extract_article(client, pr)
+     numbers = re.findall(r"Điều\s+(\d+)", ex)
+     result = list(map(int, numbers))
+     result = set(result)
+     excluded_articles = ["hk.1","hk.2","hk.3","hk.5","hk.12"]
+     Diem = Diem(result, excluded_articles, 'Luật Hàng không', 'hk')
+     prompt = get_prompt(Diem, user_question)
+     answer = extract_article(client, prompt)
+     return answer
+ 
+ if 'Dạng 5' in ans:
+     Dieu = ""
+     for i in list(G.neighbors('Luật Hàng hải'))[2:]:
+        if i == "hh.4" or i == 'tt.6':
+           continue
+        if i == 'hh.12':
+           continue
+        Dieu  +=   "Điều " + i[3:] + ": " + G.nodes[i]['content'] + "\n"
+     pr = "Cho các điều sau trong Luật sau: " +  Dieu + ".Trích xuất các điều mà bạn thấy nội dung của nó phù hợp vầ liên quan đến câu hỏi nhất: " + user_question + ".Hãy trả lại số hiệu của điều. Ví dụ nếu bạn thấy điều 12 phù hợp trả lại 'Điều 12', điều 3 là 'Điều 3',\
+      tương tự như vậy với các điều khác. Nếu không tìm thấy điều nào phù hợp, trả về rỗng"
+     ex = extract_article(client, pr)
+     numbers = re.findall(r"Điều\s+(\d+)", ex)
+     result = list(map(int, numbers))
+     result = set(result)
+     excluded_articles = ["hh.1","hh.2","hh.4","hh.6","hh.12"]
+     Diem = Diem(result, excluded_articles, 'Luật Hàng hải', 'hh')
+     prompt = get_prompt(Diem, user_question)
+     answer = extract_article(client, prompt)
+     return answer
+def Diem(result,ten_luat,excluded_articles, so_hieu):
      Diem = ""
 # Changed variable name from 'except' to 'excluded_articles'
-     excluded_articles = ["tt.1","tt.2","tt.9","tt.10"]
      for i in excluded_articles:
         Diem += "Điều " + i[3] + ": "+ G.nodes[i]['content'] + ".\n"
         for j in list(G.neighbors(i)):
@@ -127,14 +189,14 @@ def get_response_from_chatbot_gt(user_question):
      if result:
        for i in result:
       # Updated the variable name here as well
-          Diem += "Điều " + str(i) + ": " + G.nodes[f'tt.{str(i)}']['content'] + ".\n"
-          for j in list(G.neighbors(f'tt.{str(i)}')):
+          Diem += "Điều " + str(i) + ": " + G.nodes[f'{so_hieu}.{str(i)}']['content'] + ".\n"
+          for j in list(G.neighbors(f'{so_hieu}.{str(i)}')):
               Diem += "Khoản " + j[3:] + ": " + G.nodes[j]['content'] + ".\n"
               if list(G.neighbors(j)):
                  for k in list(G.neighbors(j)):
                    Diem += "Điểm " + k[3:] + ": " + G.nodes[k]['content'] + ".\n"
      else:
-        for i in list(G.neighbors('Luật Trật tự')):
+        for i in list(G.neighbors(ten_luat)):
       # Updated the variable name here as well
            if i not in excluded_articles:
              Diem += "Điều " + i[3:] + ": " + G.nodes[i]['content'] + ".\n"
@@ -143,14 +205,16 @@ def get_response_from_chatbot_gt(user_question):
                 if list(G.neighbors(j)):
                    for k in list(G.neighbors(j)):
                       Diem += "Điểm " + k[3:] + ": " + G.nodes[k]['content'] + ".\n"
+     return Diem
+
+def get_prompt(Diem, user_question):
      eva =  evaluator_extract_text(Diem, user_question)
      if 'Đã đủ' in eva:
         prompt = make_first_prompt_gt_tt(user_question, Diem)
      else:
         bonus = extract_database(eva,user_question)
         prompt = make_first_prompt_gt_tt(user_question, Diem + "\nBạn được bổ sung văn bản pháp luật sau (Lưu ý vẫn cần nêu rõ tên của bộ luật (Ví dụ Thông tư 38/2024/TT-BGTVT) và nêu cụ thể điều, khoản, điểm bạn tham khảo)" + bonus)
-     answer = extract_article(client, prompt)
-     return answer
+     return prompt
 def evaluator_extract_text(relevant_passage, user_question):
     prompt = "Cho câu hỏi " + user_question + " và văn bản đã truy xuất được sau đây:\n" + relevant_passage + "\n Bạn hãy đánh giá sau các nội dung trong văn bản truy xuất đã đủ để trả lời câu hỏi chưa. \
           Nếu đủ thì trả về 'Đã đủ', nếu không trả về 'Chưa đủ' kèm những nội dung trong câu hỏi cần truy xuất thêm ở phía sau."
@@ -208,7 +272,8 @@ def process(matches, user_question):
                content = edge_data.get("content", "")
                if content in (
                "trừ các hành vi vi phạm quy định tại",
-               "trừ hành vi vi phạm quy định tại"
+               "trừ hành vi vi phạm quy định tại",
+               'trừ trường hợp quy định tại'
                 ):
                 uc = uc + "Điểm " + j + ": " + G.nodes[j]['content'] + ".\n"
                 k = k + 1
@@ -239,9 +304,10 @@ def process(matches, user_question):
                relation = edge_data.get("content", "")
                if relation not in (
                   "trừ các hành vi vi phạm quy định tại",
-                   "trừ hành vi vi phạm quy định tại"
+                   "trừ hành vi vi phạm quy định tại",
+                   'trừ trường hợp quy định tại'
                ):
-                  if relation == "Nếu gây tai nạn giao thông," or relation == "Nêu gây tai nạn giao thông,":
+                  if relation == "Nếu gây tai nạn giao thông," or relation  == 'Nếu gây tai nạn giao thông':
                      relevant_passage = relevant_passage + " " + relation + " " + G.nodes[j]["content"] + "(Điểm " + j + ") "
                   else:
                      relevant_passage = relevant_passage + " " + G.nodes[j]["content"] + "(Điểm " + j + "). "
@@ -258,10 +324,11 @@ def process(matches, user_question):
                         relation = edge_data.get("content", "")
                         if relation not in (
                           "trừ các hành vi vi phạm quy định tại",
-                          "trừ hành vi vi phạm quy định tại"
+                          "trừ hành vi vi phạm quy định tại",
+                          'trừ trường hợp quy định tại'
 
                          ):
-                           if relation == "Nêu gây tai nạn giao thông," or relation == "Nếu gây tai nạn giao thông,":
+                           if relation == "Nếu gây tai nạn giao thông," or relation == 'Nếu gây tai nạn giao thông':
                               relevant_passage = relevant_passage + " " + relation + " " + G.nodes[l]["content"] + "(Điểm " + l + ")\n"
                            else:
                               relevant_passage = relevant_passage + " " + G.nodes[l]["content"] + "(Điểm " + l + ")\n"

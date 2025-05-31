@@ -5,9 +5,11 @@ import pandas as pd
 import google.generativeai as genai
 import os
 import pickle
-from dotenv import load_dotenv
-load_dotenv()  # Tải các biến môi trường từ tệp .env
-api_key = os.getenv("api_key_google")
+import streamlit as st
+# from dotenv import load_dotenv
+# load_dotenv()  # Tải các biến môi trường từ tệp .env
+#  api_key = os.getenv("api_key_google")
+api_key = st.secrets["api_key_google"]
 genai.configure(api_key=api_key)
 def find_best_passage(query, dataframe,n=2):
   query_embedding = genai.embed_content(model=model,
