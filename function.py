@@ -8,7 +8,8 @@ import pickle
 import streamlit as st
 # from dotenv import load_dotenv
 # load_dotenv()  # Tải các biến môi trường từ tệp .env
-#  api_key = os.getenv("api_key_google")
+# api_key = os.getenv("api_key_google")
+# api_key = os.environ.get("api_key_google")
 api_key = st.secrets["api_key_google"]
 genai.configure(api_key=api_key)
 def find_best_passage(query, dataframe,n=2):
@@ -77,11 +78,11 @@ def relevant_passage(input):
       for i in range(len(law_dict[passage])):
        relevant +=" "+ "Khoản" + " " + str(law_dict[passage][i])
    return relevant
-def make_first_prompt_gt_tt(query, relevant_passage):
+def make_first_prompt_gt_tt(query, relevant_passage, law_name):
   escaped = relevant_passage.replace("'", "").replace('"', "").replace("\n", " ")
   prompt = textwrap.dedent("""Bạn là một bot hữu ích và giàu thông tin, trả lời các câu hỏi bằng cách sử dụng văn bản pháp luật từ đoạn văn tham khảo bên dưới.\
   Đảm bảo trả lời bằng một câu hoàn chỉnh, toàn diện, bao gồm tất cả thông tin cơ bản có liên quan.\
-  Biết đoạn văn bạn tham khảo thuộc Luật Trật tự, an toàn giao thông đường bộ năm 2024, hãy nêu rõ bạn tham khảo điều này, khoản nào, điểm nào trong đoạn văn đó\
+  Biết đoạn văn bạn tham khảo thuộc {law_name}, hãy nêu rõ bạn tham khảo điều này, khoản nào, điểm nào trong đoạn văn đó\
   Tuy nhiên, bạn đang nói chuyện với người dùng không biết nhiều về pháp luật, vì vậy hãy nhớ chia nhỏ các khái niệm phức tạp và\
   tạo ra một giọng điệu thân thiện và mang tính đối thoại.\
   Nếu đoạn văn không liên quan đến câu trả lời,hãy trả lời bằng những kiến thức bạn có.
@@ -89,7 +90,7 @@ def make_first_prompt_gt_tt(query, relevant_passage):
   PASSAGE: '{relevant_passage}'
 
     ANSWER:
-  """).format(query=query, relevant_passage=escaped)
+  """).format(query=query, relevant_passage=escaped, law_name=law_name)
   return prompt
 def make_first_prompt_gt1(query, relevant_passage):
     """
